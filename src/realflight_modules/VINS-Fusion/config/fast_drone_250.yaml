@@ -5,15 +5,11 @@
 imu: 1         
 num_of_cam: 2
 
-
 imu_topic: "/mavros/imu/data_raw"
 image0_topic: "/camera/infra1/image_rect_raw"
 image1_topic: "/camera/infra2/image_rect_raw"
 
-
-
-
-output_path: "/home/fast-drone/vins_output"
+output_path: "/home/orangepi/Fast-Drone-250/vins_output"
 
 
 cam0_calib: "left.yaml"
@@ -26,26 +22,27 @@ image_height: 480
 estimate_extrinsic: 1   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
                         # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
 
+
 body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ -3.0597105734350372e-02, -5.8927835241672222e-03,
-       9.9951442822153314e-01, 4.7302157421591003e-02,
-       -9.9953144626651957e-01, -6.5966180705800959e-04,
-       -3.0601515822914926e-02, 2.2936545354189812e-02,
-       8.3966960215681175e-04, -9.9998241981978753e-01,
-       -5.8698386963871307e-03, 6.1639590858913150e-02, 0., 0., 0., 1. ]
+   data: [ -2.5469053073920112e-02, -2.5803519236300950e-03,
+       -9.9967228085981652e-01, 4.3904628708810720e-02,
+       -9.9966411893418594e-01, -4.7291963757500888e-03,
+       2.5481052120686007e-02, -1.0422131844957746e-02,
+       -4.7933966094359272e-03, 9.9998548813749777e-01,
+       -2.4590370787846982e-03, 7.6803042114817182e-03, 0., 0., 0., 1. ]
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ -3.0069515759978405e-02, -5.7183785193312686e-03,
-       9.9953145241611574e-01, 4.4848038940723180e-02,
-       -9.9954744323873768e-01, -6.8446400583832556e-04,
-       -3.0073912680706305e-02, -2.7107742793766636e-02,
-       8.5611731814771996e-04, -9.9998341569054738e-01,
-       -5.6952091272581828e-03, 6.1794907739113121e-02, 0., 0., 0., 1. ]
+   data: [ -3.1322209082184305e-02, -5.3929998135831643e-03,
+       -9.9949478976692152e-01, 4.2163084218563990e-02,
+       -9.9949565242539207e-01, -5.0641691167543357e-03,
+       3.1349560984116620e-02, -5.6975903266754335e-02,
+       -5.2306788232376984e-03, 9.9997263449764850e-01,
+       -5.2316589033047922e-03, 7.6911865903216328e-03, 0., 0., 0., 1. ]
 #Multiple thread support
 multiple_thread: 1
 
@@ -63,18 +60,17 @@ max_num_iterations: 8   # max solver itrations, to guarantee real time
 keyframe_parallax: 10.0 # keyframe selection threshold (pixel)
 
 #imu parameters       The more accurate parameters you provide, the better performance
-acc_n: 0.1          # accelerometer measurement noise standard deviation. #0.2   0.04
-gyr_n: 0.01         # gyroscope measurement noise standard deviation.     #0.05  0.004
-acc_w: 0.001         # accelerometer bias random work noise standard deviation.  #0.002
-gyr_w: 0.0001       # gyroscope bias random work noise standard deviation.     #4.0e-5
+acc_n: 0.002566105          # accelerometer measurement noise standard deviation. #0.2   0.04
+gyr_n: 0.000415594         # gyroscope measurement noise standard deviation.     #0.05  0.004
+acc_w: 0.0002443565         # accelerometer bias random work noise standard deviation.  #0.002
+gyr_w: 7.058465e-08       # gyroscope bias random work noise standard deviation.     #4.0e-5
 g_norm: 9.805         # gravity magnitude
 
 #unsynchronization parameters
 estimate_td: 1                      # online estimate time offset between camera and imu
-td: -0.05                             # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+td: -0.0088                             # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
 
 #loop closure parameters
 load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'
 pose_graph_save_path: "/home/fast/savedfiles/output/pose_graph/" # save and load path
 save_image: 1                   # save image in pose graph for visualization prupose; you can close this function by setting 0 
-

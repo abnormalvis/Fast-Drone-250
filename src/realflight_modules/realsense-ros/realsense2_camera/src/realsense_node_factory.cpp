@@ -1,9 +1,9 @@
 // License: Apache 2.0. See LICENSE file in root directory.
 // Copyright(c) 2017 Intel Corporation. All Rights Reserved
 
-#include "../include/realsense_node_factory.h"
-#include "../include/base_realsense_node.h"
-#include "../include/t265_realsense_node.h"
+#include "realsense2_camera/realsense_node_factory.h"
+#include "realsense2_camera/base_realsense_node.h"
+#include "realsense2_camera/t265_realsense_node.h"
 #include <iostream>
 #include <map>
 #include <mutex>
@@ -370,6 +370,7 @@ void RealSenseNodeFactory::StartDevice()
 		case RS430_MM_RGB_PID:
 		case RS435_RGB_PID:
 		case RS435i_RGB_PID:
+		case RS430I_PID:
 		case RS455_PID:
 		case RS465_PID:
 		case RS_USB2_PID:
